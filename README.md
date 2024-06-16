@@ -76,6 +76,29 @@ let condition: Bool = all {
 }
 ```
 
+* [PatchouliJSON](https://github.com/alexhunsley/patchouli-jsonpatch) - ergonomic JSON Patching with a friendly DSL
+
+```swift
+    let patchedJSONContent: PatchedJSON = Content(fileURL: someJSONFileURL) {
+
+        Add(address: "/users/-", jsonContent: [1, "hi", 5.0])
+
+        Remove(address: "/temp/log")
+
+        Replace(address: "/user_type", jsonContent: "admin")
+
+        Move(fromAddress: "/v1/last_login", toAddress: "/v2/last_login")
+
+        Copy(fromAddress: "/v1/login_count", toAddress: "/v2/login_count")
+
+        Test(address: "/magic_string", jsonContent: "0xdeadbeef")
+    }
+
+    let resultJSONContent: JSONContent = try content.reduced()
+    let jsonData = try dataResult.data()
+```
+
+
 ## Dependency Injection
 * [DependencyInjection](https://github.com/sebastianpixel/DependencyInjection) - Dependency injection with function builders and property wrappers
 
